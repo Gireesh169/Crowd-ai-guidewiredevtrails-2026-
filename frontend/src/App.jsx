@@ -5,8 +5,11 @@ import AlertPanel from './components/AlertPanel';
 import MapView from './components/MapView';
 import StatsBar from './components/StatsBar';
 
-const API_PREFIX = '/api';
-const WS_URL = `${window.location.protocol === 'https:' ? 'wss' : 'ws'}://${window.location.host}/ws/feed`;
+const BACKEND_BASE = (import.meta.env.VITE_BACKEND_URL || '').trim().replace(/\/$/, '');
+const API_PREFIX = BACKEND_BASE ? `${BACKEND_BASE}/api` : '/api';
+const WS_URL = BACKEND_BASE
+  ? `${BACKEND_BASE.replace(/^http/, 'ws')}/ws/feed`
+  : `${window.location.protocol === 'https:' ? 'wss' : 'ws'}://${window.location.host}/ws/feed`;
 const THREAT_ORDER = ['LOW', 'MEDIUM', 'HIGH', 'CRITICAL'];
 const ZONES = ['Zone A', 'Zone B', 'Zone C', 'Zone D'];
 
