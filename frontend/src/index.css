@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --panel: rgba(10, 15, 29, 0.82);
+  --panel-strong: rgba(9, 14, 24, 0.96);
+  --border: rgba(155, 167, 201, 0.16);
+  --accent: #6cf0c2;
+  --accent-warm: #ffb55c;
+  --danger: #ff6a6a;
+  --text-dim: #8ea0c7;
+  font-family: 'Avenir Next', 'Segoe UI', 'Helvetica Neue', sans-serif;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  height: 100%;
+  margin: 0;
+  background:
+    radial-gradient(circle at top left, rgba(51, 153, 255, 0.16), transparent 32%),
+    radial-gradient(circle at 80% 20%, rgba(255, 122, 89, 0.14), transparent 28%),
+    linear-gradient(180deg, #050816 0%, #091122 56%, #04070f 100%);
+}
+
+body {
+  background-attachment: fixed;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: rgba(108, 240, 194, 0.2);
+  color: #fff;
+}
+
+.leaflet-container {
+  background:
+    radial-gradient(circle at 50% 45%, rgba(101, 132, 255, 0.14), transparent 28%),
+    linear-gradient(180deg, rgba(8, 13, 25, 0.95), rgba(5, 10, 20, 0.99));
+  border-radius: 24px;
+}
+
+.leaflet-tooltip.zone-tooltip {
+  background: rgba(9, 14, 24, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #e6efff;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.leaflet-tooltip.zone-tooltip::before {
+  border-top-color: rgba(9, 14, 24, 0.95);
+}
+
+@keyframes alertPulse {
+  0%, 100% { box-shadow: 0 0 0 rgba(255, 106, 106, 0.0); }
+  50% { box-shadow: 0 0 40px rgba(255, 106, 106, 0.45); }
+}
+
+.alert-pulse {
+  animation: alertPulse 1.2s ease-in-out infinite;
+}
