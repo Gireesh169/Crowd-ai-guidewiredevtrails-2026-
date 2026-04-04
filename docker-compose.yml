@@ -1,0 +1,31 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: crowdshield-backend
+    env_file:
+      - .env
+    environment:
+      SIMULATION_MODE: ${SIMULATION_MODE:-true}
+      CAMERA_SOURCE: ${CAMERA_SOURCE:-0}
+      YOLO_WEIGHTS: ${YOLO_WEIGHTS:-yolov8n.pt}
+      ALLOW_YOLO_DOWNLOAD: ${ALLOW_YOLO_DOWNLOAD:-false}
+      DATABASE_URL: ${DATABASE_URL:-sqlite:////app/data/crowdshield.db}
+    volumes:
+      - crowdshield_data:/app/data
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: crowdshield-frontend
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+    restart: unless-stopped
+
+volumes:
+  crowdshield_data:
